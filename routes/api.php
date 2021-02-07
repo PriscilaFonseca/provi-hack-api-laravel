@@ -23,7 +23,12 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
     // safe
 
+    Route::prefix('user')->group(function () {
+        Route::get('', [UserController::class, 'getAll']);        
+    });
+
 });
 
 
-Route::post("authenticate", [UserController::class,'auth']);
+Route::post("authenticate", [UserController::class,'authenticate']);
+Route::post("register", [UserController::class,'register']);
