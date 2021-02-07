@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserChallengeTable extends Migration
+class CreateUsersChallengeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,8 @@ class CreateUserChallengeTable extends Migration
     {
         Schema::create('users_challenge', function (Blueprint $table) {
             $table->integer('id_user');
-            $table->integer('id_challenger');
-            $table->string('user_challenges',255);
+            $table->integer('id_challenge');
+            $table->timestamps();
         });
     }
 
