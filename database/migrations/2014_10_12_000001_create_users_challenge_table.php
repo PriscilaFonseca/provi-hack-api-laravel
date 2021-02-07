@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAreaExpertiseTable extends Migration
+class CreateUserChallengeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateAreaExpertiseTable extends Migration
      */
     public function up()
     {
-        Schema::create('area_expertise', function (Blueprint $table) {
-            $table->id();
-            $table->string('main_technology',255);
+        Schema::create('users_challenge', function (Blueprint $table) {
+            $table->integer('id_user');
+            $table->integer('id_challenger');
+            $table->string('user_challenges',255);
         });
     }
 
@@ -26,6 +27,6 @@ class CreateAreaExpertiseTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('area_expertise');
+        Schema::dropIfExists('users_challenge');
     }
 }
