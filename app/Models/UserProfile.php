@@ -9,7 +9,10 @@ class UserProfile extends Model
 {
     use HasFactory;
 
+    protected $table = "users_profile";
+
     protected $fillable = [
+        'id_user',
         'avatar',
         'bio',
         'linkedin',

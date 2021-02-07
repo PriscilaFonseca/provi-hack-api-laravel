@@ -3,10 +3,12 @@
 namespace App\Repositories\Eloquent;
 
 use App\models\User;
+use App\models\UserProfile;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\DB;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
@@ -31,28 +33,33 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
    public function create(FormRequest $data): Model 
    {
+       $userResult = null;
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
-            'user_type' => $request->user_type,            
-        ]);
+       DB::transaction(function() use($data, &$userResult) {
 
-        $user->profile = UserProfile::create([
-            'id_user' => $user->id,
-            'avatar' => $request->avatar,
-            'bio' => $request->bio,
-            'linkedin' => $request->linkedin,
-            'behance' => $request->behance,
-            'github' => $request->github,
-            'stacks' => $request->stacks,
-            'main_technology' => $request->main_technology,
-            'phone' => $request->phone,
-            'state' => $request->state,
-            'medium' => $request->medium,
-        ]);
+            $userResult = User::create([
+                'name' => $data->name,
+                'email' => $data->email,
+                'password' => $data->password,
+                'user_type' => $data->user_type,            
+            ]);
 
-        return $user;
+            $userResult->profile = UserProfile::create([
+                'id_user' => $userResult->id,
+                'avatar' => $data->avatar,
+                'bio' => $data->bio,
+                'linkedin' => $data->linkedin,
+                'behance' => $data->behance,
+                'github' => $data->github,
+                'stacks' => $data->stacks,
+                'main_technology' => $data->main_technology,
+                'phone' => $data->phone,
+                'state' => $data->state,
+                'medium' => $data->medium,
+            ]);
+        
+        }, 5);        
+
+        return $userResult;
    }
 }
