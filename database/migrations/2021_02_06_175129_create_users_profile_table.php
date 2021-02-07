@@ -15,7 +15,7 @@ class CreateUsersProfileTable extends Migration
     {
         Schema::create('users_profile', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_user');
+            $table->unsignedBigInteger('id_user');
             $table->string('avatar',255);
             $table->string('bio',500);
             $table->string('linkedin',255);
@@ -24,6 +24,8 @@ class CreateUsersProfileTable extends Migration
             $table->string('stacks',255);
             $table->string('main_technology',255);
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

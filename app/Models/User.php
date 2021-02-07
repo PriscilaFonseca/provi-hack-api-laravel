@@ -45,6 +45,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get user profile
+     */
+    public function profile() {
+        return $this->hasOne(UserProfile::class, 'id_user', 'id');
+    }
+
+    /**
      * Get applied challenges
      */
     public function userChallengesCompleted()

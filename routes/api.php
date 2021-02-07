@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 Route::prefix('user')->group(function () {
     Route::post("authenticate", [UserController::class,'authenticate']);
     Route::post("register", [UserController::class,'register']);
+    Route::get("{id}", [UserController::class,'getById']);
 });
 
 Route::prefix('challenge')->group(function () {

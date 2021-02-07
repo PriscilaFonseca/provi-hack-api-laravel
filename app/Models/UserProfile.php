@@ -28,4 +28,8 @@ class UserProfile extends Model
         'state',
         'medium',
     ];
+
+    public function users() {
+        return $this->belongsToMany(User::class, 'id_user');
+    }
 }

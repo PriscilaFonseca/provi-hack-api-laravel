@@ -55,7 +55,7 @@ class UserController extends Controller
    
             $created = $this->userRepository->create($request);
     
-            return response(['created' => ['user'=>$created]], 200);
+            return response(['created' => ['user'=>$created], 'isSuccess' => true], 200);
 
         } catch(Exception $e) {
             return response([
@@ -64,5 +64,12 @@ class UserController extends Controller
                 'isSuccess' => false
             ], 500);
         }        
+    }
+
+    function getById(int $id) 
+    {
+        $user = $this->userRepository->find($id);
+
+        return response(['user' => $user, 'isSuccess' => true]);
     }
 }

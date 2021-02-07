@@ -13,31 +13,35 @@ use Illuminate\Support\Facades\DB;
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
 
-   /**
+    /**
     * UserRepository constructor.
     *
     * @param User $model
     */
-   public function __construct(User $model)
-   {
-       parent::__construct($model);
-   }
+    public function __construct(User $model)
+    {
+        parent::__construct($model);
+    }
 
    /**
     * @return Collection
     */
-   public function all(): Collection
-   {
-       return $this->model->all();    
-   }
+    public function all(): Collection
+    {
+        return $this->model->all();    
+    }
 
-   public function create(FormRequest $data): Model 
-   {
+    public function find($id) {
+        return $this->model->with('profile')->find($id);
+    }
+
+    public function create(FormRequest $data): Model 
+    {
        $userResult = null;
 
        DB::transaction(function() use($data, &$userResult) {
 
-            $userResult = User::create([
+            $userResult = $this->model->create([
                 'name' => $data->name,
                 'email' => $data->email,
                 'password' => $data->password,
@@ -61,5 +65,5 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         }, 5);        
 
         return $userResult;
-   }
+    }
 }

@@ -37,7 +37,7 @@ class BaseRepository implements EloquentRepositoryInterface
     * @param $id
     * @return Model
     */
-    public function find($id): ?Model
+    public function find($id)
     {
         return $this->model->find($id);
     }
