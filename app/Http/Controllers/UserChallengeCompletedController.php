@@ -16,7 +16,7 @@ class UserChallengeCompletedController extends Controller
         $this->userChallengeCompletedRepository = $userChallengeCompletedRepository;
     }
 
-    function getAll(int $id) 
+    function getById(int $id) 
     {
           try {
             $challenges = $this->userChallengeCompletedRepository->all($id);

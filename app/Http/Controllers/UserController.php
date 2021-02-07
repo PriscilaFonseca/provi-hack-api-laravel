@@ -68,8 +68,17 @@ class UserController extends Controller
 
     function getById(int $id) 
     {
-        $user = $this->userRepository->find($id);
+        try {
 
-        return response(['user' => $user, 'isSuccess' => true]);
+            $user = $this->userRepository->find($id);
+            return response(['user' => $user, 'isSuccess' => true]);
+            
+        } catch(Exception $e) {
+            return response([
+                'error' => 'Something went wrong X_X',
+                'errorMessage' => $e->getMessage(),
+                'isSuccess' => false
+            ], 500);
+        }
     }
 }

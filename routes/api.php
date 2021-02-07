@@ -26,12 +26,13 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     });
 
     Route::prefix('challenge')->group(function () {        
-        Route::post('register', [ChallengeController::class, 'register']);        
+        Route::post('register', [ChallengeController::class, 'register']);
+        Route::get('{id}', [ChallengeController::class, 'getById']);
     });
 
     Route::prefix('challenge-completed')->group(function () {        
         Route::post('register', [UserChallengeCompletedController::class, 'register']);
-        Route::get('{id}', [UserChallengeCompletedController::class, 'getAll']);
+        Route::get('{id}', [UserChallengeCompletedController::class, 'getById']);
     });
 
 });
@@ -44,4 +45,5 @@ Route::prefix('user')->group(function () {
 
 Route::prefix('challenge')->group(function () {
     Route::get('', [ChallengeController::class, 'getAll']);
+    Route::get('{id}', [ChallengeController::class, 'getById']);
 });

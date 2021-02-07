@@ -32,6 +32,22 @@ class ChallengeController extends Controller
         }
     }
 
+    function getById(int $id)
+    {
+        try {
+            $challenges = $this->challengeRepository->find($id);
+  
+            return response(['challenge' => $challenges, 'isSuccess' => true], 200);        
+
+        } catch(Exception $e) {
+            return response([
+                'error' => 'Something went wrong X_X',
+                'errorMessage' => $e->getMessage(),
+                'isSuccess' => false
+            ], 500);
+        }
+    }
+
     function register(ChallengeRegisterRequest $request) 
     {
         try {

@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
@@ -44,7 +45,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
             $userResult = $this->model->create([
                 'name' => $data->name,
                 'email' => $data->email,
-                'password' => $data->password,
+                'password' => Hash::make($data->password),
                 'user_type' => $data->user_type,            
             ]);
 
