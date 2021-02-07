@@ -17,5 +17,8 @@ class UserProfile extends Model
         'github',
         'stacks',
         'main_technology',
+        'phone',
+        'state',
+        'medium',
     ];
 }
