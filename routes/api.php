@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChallengeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,17 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
         Route::get('', [UserController::class, 'getAll']);        
     });
 
+    Route::prefix('challenge')->group(function () {        
+        Route::post('register', [ChallengeController::class, 'register']);        
+    });
+
 });
 
 Route::prefix('user')->group(function () {
     Route::post("authenticate", [UserController::class,'authenticate']);
     Route::post("register", [UserController::class,'register']);
+});
+
+Route::prefix('challenge')->group(function () {
+    Route::get('', [ChallengeController::class, 'getAll']);
 });

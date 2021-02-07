@@ -11,6 +11,10 @@ class UserProfile extends Model
 
     protected $table = "users_profile";
 
+    protected $hidden = [
+        'id',
+    ];
+
     protected $fillable = [
         'id_user',
         'avatar',
