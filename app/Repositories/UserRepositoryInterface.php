@@ -2,8 +2,9 @@
 
 namespace App\Repositories;
 
-use App\Model\User;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Http\FormRequest;
 
 interface UserRepositoryInterface
 {

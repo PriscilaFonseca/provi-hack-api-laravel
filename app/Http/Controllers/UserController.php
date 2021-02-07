@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\UserRepositoryInterface;
+use App\Http\Requests\UserRegisterRequest;
 
 class UserController extends Controller
 {
@@ -37,7 +38,6 @@ class UserController extends Controller
 
     function getAll(Request $request) 
     {
-        // $users = User::all();
         $users = $this->userRepository->all();
 
         $response = [
@@ -49,6 +49,8 @@ class UserController extends Controller
 
     function register(UserRegisterRequest $request) 
     {
-        
+        $created = $this->userRepository->create($request);
+
+        return response(['created'=>$created], 200);
     }
 }

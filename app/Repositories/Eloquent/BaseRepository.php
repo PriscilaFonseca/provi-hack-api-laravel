@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Repositories\EloquentRepositoryInterface; 
 use Illuminate\Database\Eloquent\Model;   
+use Illuminate\Foundation\Http\FormRequest;
 
 class BaseRepository implements EloquentRepositoryInterface 
 {     
@@ -27,7 +28,7 @@ class BaseRepository implements EloquentRepositoryInterface
     *
     * @return Model
     */
-    public function create(array $attributes): Model
+    public function create(FormRequest $attributes): Model
     {
         return $this->model->create($attributes);
     }

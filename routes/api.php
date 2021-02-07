@@ -15,10 +15,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::group(['middleware' => 'auth:sanctum'], function(){
 
     // safe
@@ -29,6 +25,9 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
 });
 
+Route::prefix('user')->group(function () {
+    Route::post("authenticate", [UserController::class,'authenticate']);
+    //Route::post("register", [UserController::class,'register']);
+});
 
-Route::post("authenticate", [UserController::class,'authenticate']);
 Route::post("register", [UserController::class,'register']);

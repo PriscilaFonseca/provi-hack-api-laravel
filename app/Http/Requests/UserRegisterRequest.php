@@ -7,16 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 class UserRegisterRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -32,6 +22,14 @@ class UserRegisterRequest extends FormRequest
             'bio' => 'required',            
             'stacks' => 'required',
             'main_technology' => 'required',
+            'linkedin' => 'string',
+            'behance' => 'string',
+            'github' => 'string',
+            'stacks' => 'required',
+            'main_technology' => 'required',
+            'phone' => 'required',
+            'state' => 'required',
+            'medium' => 'string'
         ];
     }
 }

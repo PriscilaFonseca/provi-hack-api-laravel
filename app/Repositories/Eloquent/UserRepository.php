@@ -6,6 +6,7 @@ use App\models\User;
 use App\Repositories\UserRepositoryInterface;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
@@ -28,8 +29,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
        return $this->model->all();    
    }
 
-   public function create(array $data): Model 
+   public function create(FormRequest $data): Model 
    {
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -46,6 +48,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
             'github' => $request->github,
             'stacks' => $request->stacks,
             'main_technology' => $request->main_technology,
+            'phone' => $request->phone,
+            'state' => $request->state,
+            'medium' => $request->medium,
         ]);
 
         return $user;
