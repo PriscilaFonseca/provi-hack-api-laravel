@@ -51,6 +51,6 @@ class UserController extends Controller
     {
         $created = $this->userRepository->create($request);
 
-        return response(['created'=>$created], 200);
+        return response(['created' => ['user'=>$created]], 200);
     }
 }
