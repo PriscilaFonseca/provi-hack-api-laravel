@@ -49,8 +49,20 @@ class UserController extends Controller
 
     function register(UserRegisterRequest $request) 
     {
-        $created = $this->userRepository->create($request);
+        try {
 
-        return response(['created' => ['user'=>$created]], 200);
+            $validated = $request->validated();
+   
+            $created = $this->userRepository->create($request);
+    
+            return response(['created' => ['user'=>$created]], 200);
+
+        } catch(Exception $e) {
+            return response([
+                'error' => 'Something went wrong X_X',
+                'errorMessage' => $e->getMessage(),
+                'isSuccess' => false
+            ], 500);
+        }        
     }
 }

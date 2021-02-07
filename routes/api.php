@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChallengeController;
+use App\Http\Controllers\UserChallengeCompletedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,11 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
     Route::prefix('challenge')->group(function () {        
         Route::post('register', [ChallengeController::class, 'register']);        
+    });
+
+    Route::prefix('challenge-completed')->group(function () {        
+        Route::post('register', [UserChallengeCompletedController::class, 'register']);
+        Route::get('{id}', [UserChallengeCompletedController::class, 'getAll']);
     });
 
 });

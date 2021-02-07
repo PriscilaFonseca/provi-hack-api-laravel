@@ -32,7 +32,7 @@ class ChallengeRepository extends BaseRepository implements ChallengeRepositoryI
 
    public function create(FormRequest $data): Model 
    {
-       $challengeResult = Challenge::create([
+       $challengeResult = $this->model->create([
             'title' => $data->title,
             'description' => $data->description,
             'id_area_expertise' => $data->id_area_expertise,
